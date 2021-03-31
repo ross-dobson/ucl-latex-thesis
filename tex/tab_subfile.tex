@@ -14,7 +14,7 @@
  \bottomrule
 \end{tabular}
 \caption{A good table. Uses multicol, see \cref{sub:merged_cells}. Notice there is \emph{no vertical lines}.}
-\label{tab:uclo_lims}
+\label{tab:good_table}
 \centering
 \end{subtable}
 \begin{subtable}[h]{0.5\textwidth}
@@ -33,12 +33,10 @@
  \hline
 \end{tabular} 
 \caption{A ruddy awful table. See the \texttt{booktabs} docs.}
-\label{tab:km60_lims}
+\label{tab:bad_table}
 \centering
 \end{subtable}
-% \caption[Subtables, a good and bad table.]
-% \caption{Example of subtables. Remember in the code, the  \verb|\caption{}| needs to come before the \verb|\label{}| command. Don't ask me why, it just does. This goes for both the figure as a whole, as well as each of the subfigures.}
 \caption[Subtables]{Example of subtables. Remember in the code, the \texttt{caption} needs to come before the \texttt{label} for some reason. This applies to the overall figure/table and each subfig or subtable.}
-\label{tab:ra_dec_lims}
+\label{tab:from_subfile}
 \end{table}
 \end{document}

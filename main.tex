@@ -1,3 +1,4 @@
+% OVERLEAF USERS: YOU MUST USE 2019 TEX LIVE DISTRIBUTION
 \documentclass[a4paper,12pt,twoside]{report}
 \usepackage{mystyle}
 \usepackage{subfiles}
@@ -5,40 +6,42 @@
 
 \begin{document}
 \pagestyle{plain} % Don't want headers/footers yet
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Texcount settings for the wordcount
+
+% Include contents of tables
 %TC:group table 0 1
 %TC:group tabular 1 1
+
+% ignore the front pages
 %TC:ignore
 
 % \quickwordcount{main}
 % \detailtexcount{main}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
 \subfile{tex/title}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Acknowledgements
-
+% Declaration & Acknowledgements
 \subfile{tex/acknowledgement}
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Abstract page
 \newpage
 \subfile{tex/abstract}
 \newpage
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Table of contents, list of figures
 \setcounter{page}{4}
 \tableofcontents
 % \listoffigures
 % \listoftables
-
 \newpage
-%TC:endignore
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% start counting words from here onwards
+%TC:endignore
+
 \pagestyle{exciting} % Now we're about to do Chapter 1, so start showing the fancy headers/footers
 \newpage
 
@@ -50,12 +53,13 @@
 \part[Document settings explanation]{Explanation of the document settings in \texttt{mystyle.sty}}\label{part:part1}
 
 
-\chapter{Explanation of \texttt{mystyle.sty}}\label{ch:explanation}teams
+\chapter{Explanation of \texttt{mystyle.sty}}\label{ch:explanation}
 \subfile{tex/explanation}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 
 \part[Examples and explanations]{Examples for you to copy and use}
+
 \chapter{Images, Tables, Figures}
 \subfile{tex/imgtabfig}
 

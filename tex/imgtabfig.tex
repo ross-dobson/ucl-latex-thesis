@@ -59,13 +59,13 @@ I've included an example of two rows of two images with \cref{fig:stock2_3_4_5}.
 
 \section{Tables}
 
-The key to decent looking tables is that ``less is more''. You should NEVER have a vertical line in a small table\footnote{Unless it has \emph{lots} of text/long sentences, in which case vertical lines might be a good idea - but even then, see \cref{tab:landscape} which doesn't have any.} (if you do, you should probably split into multiple tables). The only horizontal lines you need are the \verb|\toprule|, a few \verb|\midrules| if needed, and a \verb|\bottomrule|. Any more and your tables may become hard to read. Compare the two tables of \cref{tab:ra_dec_lims} and you'll see what I mean.
+The key to decent looking tables is that ``less is more''. You should NEVER have a vertical line in a small table\footnote{Unless it has \emph{lots} of text/long sentences, in which case vertical lines might be a good idea - but even then, see \cref{tab:landscape} which doesn't have any.} (if you do, you should probably split into multiple tables). The only horizontal lines you need are the \verb|\toprule|, a few \verb|\midrules| if needed, and a \verb|\bottomrule|. Any more and your tables may become hard to read. Compare the two tables of \cref{tab:from_subfile} and you'll see what I mean.
 
 Inside \texttt{tabular} environments, you seperate columns with \verb|&| symbols. So, if you actually need an \& in your text, do \verb|\&|.\footnote{This goes for aligning equations in maths mode too, see \ref{sec:equations}.}
 
 \subsection{Multiple tables/subtables}\label{sub:subtables}
 
-These two tables, \cref{tab:ra_dec_lims}, are included in a subfile, so that it doesn't take up a bazillion lines in the main editor. Again, like the subfigures, you can reference each individual subtable \cref{tab:uclo_lims} and \cref{tab:km60_lims}. These tables also show off `multicol', in that you can have cells merged along multiple columns. (You can do the same thing with rows.)
+\Cref{tab:from_subfile} is included in a subfile, so that it doesn't take up a bazillion lines in the main editor. Again, like the subfigures, you can reference each individual subtable \cref{tab:good_table} and \cref{tab:bad_table}. These tables also show off `multicol', in that you can have cells merged along multiple columns. (You can do the same thing with rows.)
 
 % Our table is in a subfile
 \subfile{tex/tab_subfile.tex}
@@ -92,7 +92,7 @@ These two tables, \cref{tab:ra_dec_lims}, are included in a subfile, so that it 
 
 \subsection{Multicol/multirow/merged cells}\label{sub:merged_cells}
 
-\Cref{tab:multirow} shows off multi-row tables. We've actually already seen multicolumn tables used in \cref{tab:ra_dec_lims} in \cref{sub:subtables}. This functions visually much like ``merged-and-centred'' cells in Excel spreadsheets.
+\Cref{tab:multirow} shows off multi-row tables. We've actually already seen multicolumn tables used in \cref{tab:from_subfile} in \cref{sub:subtables}. This functions visually much like ``merged-and-centred'' cells in Excel spreadsheets.
 
 \begin{table}[htbp]
 \centering

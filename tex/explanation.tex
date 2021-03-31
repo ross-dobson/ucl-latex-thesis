@@ -39,7 +39,7 @@ It can also be used to customise the Tables of Contents, Tables and Figures, not
 
 \section{Headers and Footers}
 
-The \texttt{fancyhdr} package is used for this. To remove the headers/footers on a page, set that page to plain with \verb|\pagestyle{plain}|. Restore fancy headers and footers with \verb|\pagestyle{exciting}|. No, I have no fucking idea why it works if its named \texttt{exciting} but not when it's called \texttt{fancy}, fucking stupid thing.
+The \texttt{fancyhdr} package is used for this. To remove the headers/footers on a page, set that page to plain with \verb|\pagestyle{plain}|. Restore fancy headers and footers with \verb|\pagestyle{exciting}|. No, I have no idea why it works if its named \texttt{exciting} but not when it's called \texttt{fancy}, bloody thing.
 
 By default, pages with new parts or chapters, and the table of contents, are in \texttt{plain}. Root through \texttt{main.tex} to fiddle about with this if you want.
 
@@ -80,7 +80,7 @@ The numbering schema can be tinkered with via changing the number style (see \Cr
 
 \subsection{Better tables with \texttt{array, multirow} and \texttt{booktabs}} 
 
-Tables are complicated. But basically, these commands make tables look better, and easier. My advice is to copy the code from an existing table if you want. I've included an example of tables with multirow (like Excel's merge-and-centre) on \Cref{tab:multirow}, a large landscape table with different text justifications on \Cref{tab:landscape}, and examples of subtables with \Cref{tab:km60_lims}.
+Tables are complicated. But basically, these commands make tables look better, and easier. My advice is to copy the code from an existing table if you want. I've included an example of tables with multirow (like Excel's merge-and-centre) on \Cref{tab:multirow}, a large landscape table with different text justifications on \Cref{tab:landscape}, and examples of subtables with \Cref{tab:from_subfile}.
 
 There are also commands in this section to reduce the size of text in tables, to help differentiate them from the main body (and take up less space). 
 
@@ -134,7 +134,7 @@ By default it's per chapter (e.g. Eq. 1.1, Eq. 1.2, Eq. 1.3). You can comment th
 
 \subsection{Bold vectors vs Arrow vectors}
 
-Finally in this section, I redefine a few commands because I think arrow-notation for vectors looks shit vs bold font. If you disagree with me, feel free to comment those lines out.
+Finally in this section, I redefine a few commands because I think arrow-notation for vectors looks rubbish vs bold font. If you disagree with me, feel free to comment those lines out.
 
 
 \section{Footnotes}
@@ -146,7 +146,7 @@ The footnote penalty size is set here. \LaTeX\ has an internal property called `
 By default \LaTeX\ is a bit crap with speech marks, so this package fixes that. However, you must start with the \verb|`| character (next to the \emph{Esc} key on my keyboard), end with an apostrophe \verb|'|. \textbf{Do not} use the \verb|"| speech marks character, and do not use apostrophes on both sides. Instead, do \verb|``| and \verb|''| either side. Examples of why this matters:\\
 \\
 \noindent``Correct'' vs. "incorrect"\\
-`Correct' vs. 'incorrect'\\.
+`Correct' vs. 'incorrect'\\
 
 This needs to be loaded after \texttt{minted} (for including code), but ideally before \texttt{biblatex} for referencing.
 
@@ -165,11 +165,11 @@ In text, there \textit{is} a difference between placing a reference with \verb|\
 
 \subsection{IEEE style}
 
-Good choice if you need to quickly reduce your wordcount! Your references just appear as [1], [2] etc. so no need for \texttt{maxauthor}. Also, there's noo difference between \verb|\parencite| or \verb|\textcite|, as either way it's just [1], [2] etc, so it's best to just use plain old \verb|\cite|.
+Good choice if you need to quickly reduce your wordcount! Your references just appear as [1], [2] etc. so no need for \texttt{maxauthor}. Also, there's no difference between \verb|\parencite| or \verb|\textcite|, as either way it's just [1], [2] etc, so you can just use \verb|\cite|.
 
 \subsection{Bibresource file}
 
-The bibresource file is the name of the \texttt{.bib} file where your BibLaTeX code goes, prefereably exported from a reference manager like Zotero\footnote{Good choice} or Mendeley\footnote{Bad choice: not open source, nigh-impossible to export your database, owned by Elsevier who are generally bastards. Switch to Zotero}, or at a push a website like \href{https://www.citethisforme.com/}{Cite This For Me}. 
+The bibresource file is the name of the \texttt{.bib} file where your BibLaTeX code goes, prefereably exported from a reference manager like Zotero\footnote{Good choice} or Mendeley\footnote{Bad choice: not open source, nigh-impossible to export your database, owned by Elsevier who are generally bastards. Switch to Zotero!}, or at a push a website like \href{https://www.citethisforme.com/}{Cite This For Me}. 
 
 \subsection{Fixing undated sources with \texttt{xpatch}}
 
