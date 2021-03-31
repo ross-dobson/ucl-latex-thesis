@@ -1,0 +1,218 @@
+\documentclass[../main]{subfiles}
+
+\begin{document}
+
+\section{Margins, page size}
+
+\subsection{Margins with \texttt{geometry} package}
+The \texttt{geometry} package sets the layout of the page. I set it to A4, with top/bottom margins of 20mm, left/right margins of 30mm. Some thesis require a 40mm inner, 20mm outer boundary instead, as the binding process means you need to shift all your text out. Same dimensions, just shifted off-centre. Check the details of your PhD program if this needs to be physically printed out.
+
+\section{Fonts, text}
+
+\subsection{Font size}
+Okay, I lie, this is actually set in the first line of \texttt{main.tex}, not in \texttt{mystyle.sty}.
+
+\subsection{Linespacing with \texttt{linespread}}
+Sets the linespacing for the document. \verb|\singlespacing|, \verb|\onehalfspacing|, and \verb|\doublespacing|, are for use in \texttt{mystyle.sty} to set the overall spacing for the document.
+
+To change just one area, the \texttt{singlespace}, \texttt{onehalfspace}, and \texttt{doublespace} environments can be used.
+
+\subsection{Encoding: \texttt{fontenc, inputenc, babel}}
+Behind-the-scenes stuff that ensures your text doesn't break if, e.g. you have an author with non-latin characters in the name. For example, means you don't have to go through and replace all characters like Å with their latex commmand, e.g. \verb|\r{A}|, instead.
+
+\subsection{Strikethrough with \texttt{ulem}}
+Provides \sout{strikethrough} text, \uline{underline}, \uuline{urgent}, \uwave{wriggly}, \dashuline{dashed} and \dotuline{dotted} text commands. 
+
+The \texttt{normalem} command ensure this package doesn't override the \verb|\emph{}| or \verb|\em{}| commands with underlining instead of italics.
+
+\subsection{Fonts}
+By default set to Times New Roman, because I think it looks a bit better. Comment out the \texttt{mathptx} line to set it back to the default \LaTeX\ font. Or, uncomment the last two lines to use Helvetica/Arial.
+
+
+\section{Chapter titles}
+
+I've used the \texttt{titlesec} package to change the format of Chapter titles to make them look a bit more like section titles (the \verb|\titleformat| bit), and take up less space (the \verb|\titlespacing| bit) which is helpful with page limits.
+
+The same package can do a \textit{lot} of customisation, especially if you want to write a book or lecture notes, or really set your thesis apart.
+
+It can also be used to customise the Tables of Contents, Tables and Figures, not that I've bothered.
+
+\section{Headers and Footers}
+
+The \texttt{fancyhdr} package is used for this. To remove the headers/footers on a page, set that page to plain with \verb|\pagestyle{plain}|. Restore fancy headers and footers with \verb|\pagestyle{exciting}|. No, I have no fucking idea why it works if its named \texttt{exciting} but not when it's called \texttt{fancy}, fucking stupid thing.
+
+By default, pages with new parts or chapters, and the table of contents, are in \texttt{plain}. Root through \texttt{main.tex} to fiddle about with this if you want.
+
+\subsection{The settings in \texttt{mystyle.sty}}
+
+The \texttt{setlength} and \texttt{rulewidth} commands set the size of the header, and the size of the lines (or `rules') under/above the header/footer respectively.
+
+The remaining lines are actually what set the style. The documentation for this package is quite extensive, but I've included a few examples:
+
+\subsection{Header style}
+
+You can have the chapter titles appear in the Right corner on Odd pages, Left corner on Even pages, with \verb|\fancyhead[RO,LE]{\textbf{\nouppercase{\rightmark}}}|. Or, instead, \verb|\fancyhead[RO,LE]{\textbf{\nouppercase{\thepage}}}| puts the page number on the Right corner of Odd pages, and the Left corner of Even pages, in bold font. 
+
+\verb|\fancyhead[RE,LO]{\textbf{\nouppercase{Section \rightmark}}}| puts the section number and title, Right on Even pages, Left on Odd pages.
+
+\subsection{Footer style}
+
+\verb|\fancyfoot[RO,LE]{\thepage}| Puts the page numbers in the corners of the footer. If you want it in the centre instead, do \verb|[RC,LC]|.
+
+\section{Captions}
+
+The setup of the caption package allows you to specify a few things.
+
+\subsection{Table \& Figure numbering with \texttt{caption}}\label{sub:number_within}
+ The main thing you may want to change is \texttt{figurewithin} and \texttt{tablewithin}, which set how the figure and table numbering work\footnote{Same principle applies to equations. See \Cref{sub:equation_numbering}}. Remove those two keywords if you want numbering to be continous throughout the document (e.g. \textbf{Table 1, Table 2, Table 3}) instead of e.g. \textbf{Table 1.1, Table 2.1, Table 2.2}. Or, you can change it to sections, parts, subsections, etc.
+
+\subsection{Subtable and Subfigure numbering with \texttt{subcaptions}}
+
+Allows each subtable or subfigure to have it's own caption. Note it's still done with \verb|\caption|, not \verb|\subcaption| though.
+
+\section{Figures}
+
+Not much to customise here. First command loads the package used to insert figures, second command specifies the folder I choose to keep images in.
+
+The numbering schema can be tinkered with via changing the number style (see \Cref{sub:numbering_schemes}) or whether numbers reset each chapter or are continous throughout the document (see \Cref{sub:number_within}).
+
+\section{Tables}
+
+\subsection{Better tables with \texttt{array, multirow} and \texttt{booktabs}} 
+
+Tables are complicated. But basically, these commands make tables look better, and easier. My advice is to copy the code from an existing table if you want. I've included an example of tables with multirow (like Excel's merge-and-centre) on \Cref{tab:multirow}, a large landscape table with different text justifications on \Cref{tab:landscape}, and examples of subtables with \Cref{tab:km60_lims}.
+
+There are also commands in this section to reduce the size of text in tables, to help differentiate them from the main body (and take up less space). 
+
+\subsection{Numbering schemes}\label{sub:numbering_schemes}
+There's also a command to change the numbering scheme to roman numerals if your document style/journal requires it. The same process applies for changing numbering schemes of chapters, sections, lists, figures etc. Look online or ask me if you need specific help changing something.
+
+\subsection{Landscape tables with \texttt{pdflscape}}
+
+If you have a really large table, you can make the page landscape to fit it on better. See \Cref{tab:landscape}.
+
+If you have a \textit{really} large table you want spread across multiple pages? It \textit{can} be done, best contact me. In a pinch, I guess just break it into multiple tables...
+
+\section{Coloured/shaded boxes}
+
+This is probably only useful for writing a book or lecture notes, but I've tried to make this document a useful catch-all.
+
+Borders are removed with \texttt{hidealllines=True}. Corners can be rounded by changing \texttt{roundcorner} size. The \verb|\definecolor{boxcolour}{HTML}{AAAAAA}| command defines a custom colour `boxcolour' with HTML colour `AAAAAA' which is a sort of grey. Obviously, you can set this to whatever you want. See \Cref{sec:boxes}.
+
+\section{Inspirational quotes with \texttt{epigraph}}
+
+Again, probably only useful for books or lecture notes. See \Cref{sec:epigraphs}.
+
+\section{Code}
+The \texttt{minted} package allows you to include code, with formatting to match the language. For example, I can include some Java here:
+
+\begin{minted}[linenos,fontsize=\footnotesize]{java}
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+    }
+}
+\end{minted}
+
+Or, if you just want one line, use \verb|\mint| over \verb|\begin{minted}|, like this: \mint{python}|print("Hello World!)|
+
+The example Java code above has line numbers enabled with \texttt{linenos} and the font reduced in size to \verb|\footnotesize| (just like we did with Tables).
+
+You can also import code directly from files rather than pasting it into the text, which could be useful with large projects. Use \verb|\inputminted{program.py}{python}| for example.
+
+\section{Lists with \texttt{enumitem}}
+
+This sets up lists. Not much to really change here. See \Cref{sec:lists} where there is some examples.
+
+\section{Equations and Maths}
+
+The \texttt{textcomp, gensymb, mathtools} and all the AMS packages are behind-the-scenes stuff. Don't touch them, don't change the order.
+
+\subsection{Equation numbering style}\label{sub:equation_numbering}
+
+By default it's per chapter (e.g. Eq. 1.1, Eq. 1.2, Eq. 1.3). You can comment this out to make it continous throughout the doc. Very similar to Tables and Figures, c.f. \Cref{sub:number_within}.
+
+\subsection{Bold vectors vs Arrow vectors}
+
+Finally in this section, I redefine a few commands because I think arrow-notation for vectors looks shit vs bold font. If you disagree with me, feel free to comment those lines out.
+
+
+\section{Footnotes}
+
+The footnote penalty size is set here. \LaTeX\ has an internal property called `badness' which defines how badly something is breaking its formatting rules. Here I maximise the size limit on footnotes before it will wrap a long one over to a second page. But, if a footnote is really \textit{that} long, it probably warrants being in the main body of text...
+
+\section{Speech marks with \texttt{csquotes}}
+
+By default \LaTeX\ is a bit crap with speech marks, so this package fixes that. However, you must start with the \verb|`| character (next to the \emph{Esc} key on my keyboard), end with an apostrophe \verb|'|. \textbf{Do not} use the \verb|"| speech marks character, and do not use apostrophes on both sides. Instead, do \verb|``| and \verb|''| either side. Examples of why this matters:\\
+\\
+\noindent``Correct'' vs. "incorrect"\\
+`Correct' vs. 'incorrect'\\.
+
+This needs to be loaded after \texttt{minted} (for including code), but ideally before \texttt{biblatex} for referencing.
+
+\section{Referencing}
+
+Almost warrants a whole chapter in its own right. 
+When looking at a paper online, check if there is an option to export to BibTeX/BibLaTeX style, saves yourself a lot of hassle. 
+
+Feel free to contact me for issues with referencing, it can be an absolute pain - but I probably\footnote{read: I \textit{will}} will try to convert you to Zotero and the BetterBibTeX plugin! 
+
+\subsection{Harvard(ish) style}
+
+Harvard style referencing is set by using the cite and bibliography styles of \texttt{authoryear}, and I've specified the compact versions with \texttt{authoryear-comp}. The \texttt{maxcitenames} command sets the amount of authors listed before it starts using ``et al''. This sets it to where there is 3 or more authors, the general rule of thumb.
+
+In text, there \textit{is} a difference between placing a reference with \verb|\parencite| or \verb|\textcite|, see \Cref{sec:ref_test}.
+
+\subsection{IEEE style}
+
+Good choice if you need to quickly reduce your wordcount! Your references just appear as [1], [2] etc. so no need for \texttt{maxauthor}. Also, there's noo difference between \verb|\parencite| or \verb|\textcite|, as either way it's just [1], [2] etc, so it's best to just use plain old \verb|\cite|.
+
+\subsection{Bibresource file}
+
+The bibresource file is the name of the \texttt{.bib} file where your BibLaTeX code goes, prefereably exported from a reference manager like Zotero\footnote{Good choice} or Mendeley\footnote{Bad choice: not open source, nigh-impossible to export your database, owned by Elsevier who are generally bastards. Switch to Zotero}, or at a push a website like \href{https://www.citethisforme.com/}{Cite This For Me}. 
+
+\subsection{Fixing undated sources with \texttt{xpatch}}
+
+Rather than leaving empty brackets for a source with no date (typically websites), I've made it say `n.d.' which is a bit better.
+
+You should be asking yourself if a source with no date is really acceptable as a reference though. It might work in something like Ancient Greek Classics, but it doesn't generally float in Physics.
+
+\section{Links, URLs}
+
+\subsection{The \texttt{hyperref} package}
+
+You can set the format of all the types of links in your document - references/citations, links to other chapters and sections (see below), URLs, etc. I set them all to blue, but you may example want to set references to black if that is your preference.
+
+The \texttt{unicode} option ensures foreign characters don't break your document, and \texttt{breaklinks} tries to wrap long URLs so they don't go off the end of the page.\footnote{This doesn't always seem to work in my bibliography - if you work it out, please let me know!}
+
+\subsection{Internal links with \texttt{cleverref}}
+
+This sets up \texttt{cleverref} - see \Cref{sec:ref_test}. I've painstakingly set it up so that the symbol symbol, $\S$, is formatted correctly for any references to other chapters/sections/subsections with \verb|\cref|.
+
+You should also use \verb|\Cref| (note the capital C gives you capitalised Table 1 or Figure 1) for linking Tables and Figures.
+
+\section{Dummy text with \texttt{blindtext}}
+
+Does what it says on the tin. Useful placeholder text for placing images, sizing things up etc.
+
+\section{Word Counts with \texttt{texcount}}
+This took me ages to get it working with subfiles and to read/ignore the correct areas.\\
+\\
+\noindent Counted: Main body text, titles of chapters/sections/subsections, text in tables, pretty much anything in the main body not explicitly excluded below\\
+Not counted: Title page, abstract, acknowledgements, declaration, contents, captions, bibliography, citations, equations, anything in appendices
+
+If you see any comments that begin with \verb|%TC:|, they are \emph{not} comments, they are commands giving instructions to \texttt{texcount}! E.g. telling it to ignore or count certain sections, or at the beginning of \texttt{main.tex} I tell it to count the contents of Tables by adding \texttt{table} and \texttt{tabular} environments manually.
+
+I've included a command to include the word count automatically on the title page, \verb|\quickwordcount|. If you want a more detailed breakdown, use \verb|\detailtexcount| to print out the console output.
+
+\section{Subfiles}
+
+\textit{This one actually needs to be in \texttt{main.tex} else it breaks things, e.g. the wordcount.} These are great for keeping your document organised, and having pesky things like large tables in seperate documents. 
+
+You include a subfile with \verb|\subfile{filename}|, e.g. to include this Chapter, in \texttt{main.tex} I wrote \verb|\subfile{tex/explanations}|. 
+
+Each subfile \emph{must} begin with \verb|\documentclass[../main]{subfiles}|. It imports all the packages from the preamble of \texttt{main.tex}, so you don't need to worry about anything. I \emph{think} I've finally ironed out all the bugs, so that things like the word count, links and citations should all work correctly between subfiles.
+
+Remember you need to compile \texttt{main.tex} to see the whole doc though.
+
+\end{document}

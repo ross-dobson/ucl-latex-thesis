@@ -1,0 +1,106 @@
+\documentclass[../main]{subfiles}
+\begin{document}
+
+\section{Basic text formatting}\label{sec:basic_text}
+
+\subsection{Bold}\label{sub:bold}
+You can do \textbf{bold font} with \verb|\textbf|.
+
+\subsection{Italics}\label{sub:emph}
+You can do \emph{italics} with either \verb|textbf| or \verb|\emph|. The second is better because it is contextual to surrounding text.
+
+\subsection{Monospace/``terminal'' font}\label{sub:tt}
+Use \verb|\texttt| to get \texttt{monospace} font. I tend to use it for referencing commands.
+
+\subsection{Small Capitals}\label{sub:sc}
+Use \verb|\textsc| to get \textsc{Small Capitals}. I tend to use it for referencing the names of software programs. It was also used on the title page of this document.
+
+\subsection{Quotes/Speech marks}\label{sub:quotes}
+
+To get them to format correctly, you have to use the grave key \verb|``| or \verb|`| at the start (it's under the escape key on my laptop, your mileage may vary) and apostrophes \verb|''| or \verb|'| at the end. NEVER, ever use the existing speech mark key, or you end up with "this" which looks awful.
+
+On one hand, I will admit this is an annoying habit to develop when something like Word does it automatically. On the other hand, you have complete control over the directions of your speech marks here, whereas Word is happy to fuck you around and break it for no obvious reason.
+
+\section{Internal links}\label{sec:links}
+
+Here's a internal link to one section, \cref{sec:links}, and here's two sections, \cref{sec:links,sec:basic_text}, and here's a range of subsections, \cref{sub:bold,sub:emph,sub:tt,sub:sc,sub:quotes} - all done with \verb|\cref|. It's clever. Hence the name, ``clever-ref''. Note if doing multiple, don't include spaces between entries or it breaks.
+
+\section{URLs}\label{sec:URL}
+Whilst we're playing around with links, here's a \verb|href| to \href{http://www.google.com}{Google} that's been properly formatted, versus just the URL as \url{http://www.google.com}. 
+
+
+\section{Testing citations (i.e. your bibliography, not internal stuff)}\label{sec:ref_test}
+
+If you are using e.g. the IEEE style, the differences between parencite and textcite may not be noticeable. Harvard style should show a difference though.
+
+\subsection{In-text citations}
+These tend to be more common in humanities/literature as they actually give a shit about grammar and flow.
+Here we are testing one reference with an in-text citation using \verb|\textcite|, e.g. `This was stated in \textcite{einstein}, where he...'. 
+
+\subsection{Parantheses/brackets citations}
+These tend to be much more common in STEM as they take up less words. Here we test two in one \verb|\parencite| e.g. as `This statement was confirmed to be true. \parencite{knuthwebsite,latexcompanion}''.
+
+
+\section{Lists} \label{sec:lists}
+
+Here we will have an example of a list, but let's push the boat out a bit and have a ``nested'' list---a list within a list, an example of list-ception.
+
+\subsection{Basic lists, nested lists}
+\begin{enumerate}
+\item The first item
+\begin{enumerate}
+\item Nested item 1
+\item Nested item 2
+\end{enumerate}
+\item The second item
+\item The third etc \ldots
+\end{enumerate}
+
+\subsection{Custom labels}
+You can also have custom labels:
+\begin{enumerate}
+\item [Piss] we can also do custom labels \dots
+\item [Arse] \dots these can be fun.
+\end{enumerate}
+
+\subsection{Inline lists}
+We're now going to do an `inline' list:
+
+Coco likes fruit. Her favorites are:
+\begin{enumerate*}[label={\alph*)},font={\bfseries}]
+\item bananas
+\item apples
+\item oranges and
+\item lemons.
+\end{enumerate*}
+
+(This seems like a perfectly reasonable, healthy and balanced diet. Unlike the Tesco meal deals, Rustler's 60 second burgers, half-price Wasabi and \emph{cheeky} Maccas, washed down with a healthy diet of Sainsbury's basic coffee and Red Bull/Monster/Tenzing that whoever is reading this is probably subsisting on.)
+
+\section{Dashes}
+
+This is more a section on grammar pedantry than anything else, but it's tangentially \LaTeX\ related, so in it goes.
+
+\subsection{Emdash}
+This is an emdash---a very useful piece of punctuation---used used to join clauses. Type it with three hyphens \verb|---|. Instead of an emdash\footnote{Funny name, eh? Comes from the fact it is as wide as a letter `m'. The more you know.}, you can do a hyphen surrounded by spaces either side, i.e. \verb| - |.
+
+\subsection{Hyphen} 
+This is a hyphen, used in naturally-hyphenated words. Type it with a single hyphen, obviously, i.e.  \verb|-|.
+
+\subsection{Dash}
+If we wanted to join two hypenated words, e.g. ``the pro-choice--pro-life argument'', or do a numerical range (``pages 10--15'' or ``8am--9am'') we can use an endash\footnote{It is the width of an `n', hence `endash'.}, typed with two hyphens (i.e. \verb|--|) to join them.
+
+\section{Boxes}\label{sec:boxes}
+
+This might be more useful in a book or some lecture notes than a thesis, unless you have some Nobel-prize winning result you really want to emphasise.
+
+\begin{mdframed}[style=MyFrame,nobreak=true,align=center]
+\mdfsubtitle{Definition - Commutative}
+If something is commutative, the order does not matter. $\vec{a}=\vec{b}+\vec{c}=\vec{c}+\vec{b}$
+\end{mdframed}
+
+\section{Epigraphs / Inspirational Quotes}\label{sec:epigraphs}
+
+Allows pithy quotes, such as:
+
+\epigraph{I'm confusing you on purpose.}{Dr. Mario Campanelli\\October 2017}.
+\end{document}

@@ -1,0 +1,144 @@
+\documentclass[../main]{subfiles}
+\begin{document}
+
+\section{Equations}\label{sec:equations}
+
+Basic stuff. Superscripts are done with the hat symbol \verb|^|, subscripts are done with the underscore \verb|_|. Don't forget to liberally wrap stuff in curly brackets. Here's what happens if you forget: $ t_{start}$ vs $t_start $. If you want to fix text in maths mode looking funky, wrap it in \verb|text{}|. E.g. $t_{end}$ vs $t_\text{end}$.
+
+
+\subsection{Un-numbered equations}
+If you just want to do a quick equation like $E=mc^2$, just wrap it in dollar signs in the text, e.g. \verb|$E=mc^2$|. If you want the equation to not be in-line in the text, you need to use the \verb|equation| environment. I've included one below, that also contains a \verb|split| environment showing that you can align equations by using \verb|&| symbols.
+
+\begin{equation*}
+    \begin{split}
+        y &= mx+c\\
+        E &= mc^{2}\\
+        e^{i\theta} &= \cos{\theta} + i\sin{\theta}
+    \end{split}
+\end{equation*}
+
+Notice this was an un-numbered equation, which was achieved by using the \verb|{equation*}| environment with an asterisk\footnote{Using an asterisk to remove numbers also works for chapters, tables, figures etc.} (you can achieve the same thing by wrapping maths in two dollar signs, i.e. \verb|$$y=mx+c$$|, but using the \texttt{equation} environment gives better control).  
+
+\subsection{Numbered equations}
+Having numbered equations also allows you to reference equations throughout your text:
+
+\begin{equation} \label{eq:eulers_identity}
+    e^{i\pi} + 1 = 0
+\end{equation}
+
+\subsection{Subequations}
+Oh, subequations are also a thing:
+
+\begin{subequations}
+\label{eq:Maxwell}
+Maxwell's equations:
+\begin{align}
+        B'&=-\nabla \times E,         \label{eq:MaxB} \\
+        E'&=\nabla \times B - 4\pi j, \label{eq:MaxE}
+\end{align}
+\end{subequations}
+
+\subsection{Referencing equations}
+Because we included labels, I can reference them, e.g. look at equation \eqref{eq:eulers_identity}.
+You can reference subequations too, e.g. \cref{eq:MaxB} and \eqref{eq:MaxE}. Notice with these two subequations, the first was referenced using cleverref with \verb|\cref|, the second was using \verb|\eqref|. The latter doesn't put `eq.' or `equation' before the number, which may be useful in different situations.
+
+\section{Symbols}
+
+\subsection{Vectors}
+
+\subsubsection{Note on arrow vs. bold style vectors}
+I hate vectors with arrows, so I disabled it in the mystyle.sty document, making them boldface instead. If you want the arrows back, simply comment out lines 134-137\footnote{I sometimes forget to update this when I add stuff. It should be \textit{somewhere} near those line numbers!} in \texttt{mystyle.sty}.
+
+\subsubsection{Normal vectors}
+You can do a vector with the \verb|\vec| command: $\vec{x}, \vec{y}, \vec{z}$. 
+
+\subsubsection{Unit vectors} 
+You can do unit vectors with the \verb|\hat| command: $\hat{x}, \hat{y}, \hat{z}$.
+
+\subsection{Bars/average symbol}
+
+This is simply \verb|\bar|. E.g. $\bar{x}$.
+
+\subsection{Greek letter variants}
+Here we're showing off all the variations on greek letters, putting the original next to the variant. $\epsilon \varepsilon$,  $\phi \varphi$, $\theta \vartheta$, $\rho \varrho$, $\sigma \varsigma$, $\pi \varpi$.
+
+\subsection{Integrals \& Summations}
+Here are the different ways of doing sums and integrals. (Note that even though we're not aligning the equations, they still need to be in a \verb|\split| environment for the line breaks to work):
+
+\begin{equation*}
+    \begin{split}
+        \sum_{i=1}^{10} t_i \\
+        \displaystyle\sum_{i=1}^{10} t_i \\
+        \int_0^\infty \mathrm{e}^{-x}\,\mathrm{d}x\\
+    \end{split}
+\end{equation*}
+
+Note the straight $\mathrm{d}$ on the $\mathrm{d}x$ achieved with \verb|\mathrm|, and the negative space between the integrand and $\mathrm{d}x$ given by \verb|\,|, which makes it look better.
+
+\subsection{Brackets}
+Here, we showcase the different types of brackets.
+\begin{equation*}
+    ( a ), [ b ], \{ c \}, | d |, \| e \|,
+\langle f \rangle, \lfloor g \rfloor,
+\lceil h \rceil, \ulcorner i \urcorner,
+/ j \backslash
+\end{equation*}
+
+Here's an example of sizing brackets. Note how this:
+\begin{equation*}
+    \frac{\mathrm d}{\mathrm d x} \big( k g(x) \big)
+\end{equation*}
+is more readable than this:
+\begin{equation*}
+    \frac{\mathrm d}{\mathrm d x} \left( k g(x) \right)
+\end{equation*} simply because we play with the height of the brackets slightly.
+
+\subsection{Degree symbol}
+
+$10^\circ{}$ versus $10\degree$. The first is bodged, the second uses the \verb|\degree| command added via \verb|gensymb|. It's better. Use it.
+
+\section{Matrix}
+Here we have a non-aligned \verb|{matrix}| and an aligned \verb|{matrix*}|:
+
+\begin{equation*}
+\begin{matrix}
+  -1 & 3 \\
+  2 & -4
+\end{matrix}
+ =
+\begin{matrix*}[r]
+  -1 & 3 \\
+  2 & -4
+\end{matrix*}
+\end{equation*}
+
+We can have bracket matrices with \verb|{pmatrix}| and determinant-style straight-edge matrices with \verb|{vmatrix}|.
+
+\begin{equation*}
+A_{m,n} = 
+ \begin{pmatrix*}
+  a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\
+  a_{2,1} & a_{2,2} & \cdots & a_{2,n} \\
+  \vdots  & \vdots  & \ddots & \vdots  \\
+  a_{m,1} & a_{m,2} & \cdots & a_{m,n} 
+ \end{pmatrix*}
+\end{equation*}
+
+\begin{equation*}
+A_{m,n} = 
+ \begin{vmatrix*}
+  a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\
+  a_{2,1} & a_{2,2} & \cdots & a_{2,n} \\
+  \vdots  & \vdots  & \ddots & \vdots  \\
+  a_{m,1} & a_{m,2} & \cdots & a_{m,n} 
+ \end{vmatrix*}
+\end{equation*}
+
+
+A matrix in text must be set smaller:
+$\bigl(\begin{smallmatrix}
+a&b \\ c&d
+\end{smallmatrix} \bigr)$
+to not increase leading in a portion of text.
+
+\end{document}

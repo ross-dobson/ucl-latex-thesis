@@ -1,0 +1,23 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\footnotesize
+\begin{table}[h!]
+\caption[Large, landscape, fixed-width, right-aligned table]{A lovely table using no vertical lines, showing off the raggedright and fixed-width capabilities.} % title name of the table
+\centering % centering table
+\begin{tabular}{p{3cm}p{3cm}p{3cm}>{\raggedright}p{3cm}>{\raggedright}p{3cm}>{\raggedright\arraybackslash}p{3cm}}
+\toprule
+Column 1&Column 2&Column 3&Column 4&Column 5&Column 6\\
+\midrule
+The quick brown fox jumped over the lazy dog.&The quick brown fox jumped over the lazy dog.&The quick brown fox jumped over the lazy dog.&The quick brown fox jumped over the lazy dog.&The quick brown fox jumped over the lazy dog.&The quick brown fox jumped over the lazy dog.\\
+\midrule
+A sentence that has some ostensibly, overwhelmingly, ostentatiously large words mixed in with some short, sharp words.&A sentence that has some ostensibly, overwhelmingly, ostentatiously large words mixed in with some short, sharp words.&A sentence that has some ostensibly, overwhelmingly, ostentatiously large words mixed in with some short, sharp words.&A sentence that has some ostensibly, overwhelmingly, ostentatiously large words mixed in with some short, sharp words.&A sentence that has some ostensibly, overwhelmingly, ostentatiously large words mixed in with some short, sharp words.&A sentence that has some ostensibly, overwhelmingly, ostentatiously large words mixed in with some short, sharp words.\\
+\midrule
+These first free columns are using `justified' text. That works in the main body, but in tables, it looks bad.&This is because rather than specifying the alignment with \texttt{c, l, r}, we have specified a fixed width for the column with \verb|{p{3cm}}|.&Justified text works nicely in the main body, but in tables, it looks bad.&These last three columns are using right aligned text. Notice it looks better.&The command to do this is \verb|>{\raggedright}|, put before the column width specifier \verb|p{3cm}|.&However, the final \emph{column} needs \verb|\arraybackslash| after the \verb|\raggedright|, inside the same set of curly brackets \verb|{}|. Finally, rather than \verb|\\| at the end of the row, the final \emph{row} of the table needs \verb|\tabularnewline| instead. \tabularnewline
+
+\bottomrule
+\end{tabular}
+\label{tab:landscape}
+\end{table}
+
+\end{document}

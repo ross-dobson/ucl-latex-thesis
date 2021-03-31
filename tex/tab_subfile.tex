@@ -1,0 +1,44 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\begin{table}[htbp]
+\begin{subtable}[h]{0.5\textwidth}
+\centering
+\begin{tabular}{p{0.2\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.1\textwidth}  }
+ \toprule
+ \multirow{2}{*}{}&\multicolumn{2}{c}{2020-01-01}&\multicolumn{2}{c}{2020-03-01}\\
+ \cmidrule(l){2-5}
+ &Dusk&Dawn&Dusk&Dawn\\
+ UTC&18:27&05:56&19:31&04:54\\
+ RA Limit&02:28&13:59&06:10&15:34\\
+ \bottomrule
+\end{tabular}
+\caption{A good table. Uses multicol, see \cref{sub:merged_cells}. Notice there is \emph{no vertical lines}.}
+\label{tab:uclo_lims}
+\centering
+\end{subtable}
+\begin{subtable}[h]{0.5\textwidth}
+\centering
+\begin{tabular}{ ||p{0.2\textwidth}|p{0.1\textwidth}|p{0.1\textwidth}|p{0.1\textwidth}|p{0.1\textwidth}||  }
+ \hline
+ \parbox[c]{5cm}{Night \\ beginning:} & \multicolumn{2}{c|}{2020-01-01}
+ & \multicolumn{2}{c||}{2020-03-01} \\
+ \hline
+ \hline
+  &Dusk&Dawn&Dusk&Dawn\\
+ \hline
+ UTC&01:20&08:27&00:39&09:11\\
+ \hline
+ RA Limit&04:36&11:44&06:33&15:06\\
+ \hline
+\end{tabular} 
+\caption{A ruddy awful table. See the \texttt{booktabs} docs.}
+\label{tab:km60_lims}
+\centering
+\end{subtable}
+% \caption[Subtables, a good and bad table.]
+% \caption{Example of subtables. Remember in the code, the  \verb|\caption{}| needs to come before the \verb|\label{}| command. Don't ask me why, it just does. This goes for both the figure as a whole, as well as each of the subfigures.}
+\caption[Subtables]{Example of subtables. Remember in the code, the \texttt{caption} needs to come before the \texttt{label} for some reason. This applies to the overall figure/table and each subfig or subtable.}
+\label{tab:ra_dec_lims}
+\end{table}
+\end{document}

@@ -1,0 +1,230 @@
+\ProvidesPackage{mystyle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% MARGINS, PAGE SIZE
+\usepackage[a4paper,includeheadfoot,heightrounded,inner=30mm,outer=30mm,top=20mm,bottom=20mm,]{geometry}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% FONTS, TEXT
+\usepackage[T1]{fontenc} % Fixes some symbols (put before inputenc package)
+\usepackage[utf8]{inputenc} % Unicode (stops non latin characters breaking, e.g. in author names)
+\usepackage[english]{babel} % See above
+
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage[normalem]{ulem} % strikethrough \sout{...}
+
+% Want to use Times New Roman? Uncomment this:
+\usepackage{mathptmx} % use Times New Roman
+
+% Want to use Helvetica/Arial? Uncomment both lines:
+% \usepackage{helvet}
+% \renewcommand\familydefault{\sfdefault}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Chapter titles
+
+\usepackage{titlesec}
+
+\titleformat{\chapter}[display]
+    {\normalfont\LARGE\bfseries}
+    {\chaptertitlename\hspace{0.5pc}\thechapter}{5pt}{\huge}
+    
+\titlespacing*{\chapter}{0pt}{-20pt}{20pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% HEADERS, FOOTERS
+\usepackage{fancyhdr}
+
+% Just page numbers on pages marked with "plain"
+\fancypagestyle{plain}{%
+\fancyhf{}%
+\fancyfoot[RO,LE]{\thepage}%
+}
+
+% Include chapter/section in upper corners on "exciting" pages
+\fancypagestyle{exciting}{%
+\fancyhf{}%
+\fancyhead[RO,LE]{\textbf{\nouppercase{\leftmark}}}%
+\fancyhead[RE,LO]{\textbf{\nouppercase{\rightmark}}}%
+\fancyfoot[RO,LE]{\thepage}%
+}
+
+% Fix header height, remove rule lines
+\setlength{\headheight}{15pt} % Height of header
+\renewcommand{\headrulewidth}{0pt} % Remove underlining of header
+\renewcommand{\footrulewidth}{0pt} % Remove overlining of footer
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% CAPTIONS (ON FIGURES, TABLES ETC)
+% The "within" commands set the label numbers to reset every chapter, rather than continous throughout the doc. E.g. Fig 1.1, 1.2, 2.1 NOT Fig 1, 2, 3.
+\usepackage[font=small,labelfont=bf,figurewithin=chapter,tablewithin=chapter]{caption}
+\usepackage{subcaption} % Allows captions on subfigures/subtables too.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% FIGURES
+\usepackage{graphicx}
+\graphicspath{{./fig/}} % Put your images in the fig folder
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% TABLES
+\usepackage{array} % Much better tables
+\usepackage{multirow} % Like multicol, but for rows
+\usepackage{booktabs} % MUCH better tables. \toprule, \midrule, \bottomrule = all you need for a good looking table.
+
+% Make table text smaller:
+\let\oldtabular\tabular
+\renewcommand{\tabular}{\footnotesize\oldtabular}
+
+% Roman numerals for Table number
+% \renewcommand{\thetable}{\Roman{table}} % Table I,II,III not 1,2,3
+
+% Allows landscape environment, might need for large tables
+\usepackage{pdflscape}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% BOXES
+% If you're writing lecture notes/a book, might be useful?
+\usepackage{xcolor}
+\usepackage{mdframed}
+\definecolor{boxcolour}{HTML}{AAAAAA} % HTML colour code
+\mdfdefinestyle{MyFrame}{%
+    hidealllines=true,
+    roundcorner=0pt,
+    backgroundcolor=boxcolour,
+    subtitlebackgroundcolor=boxcolour,
+    subtitleabovelinewidth=0pt,
+    subtitlebelowlinewidth=0pt,
+    subtitleaboveskip=0pt,
+    subtitlebelowskip=0pt,
+    subtitleinneraboveskip=0pt,
+    subtitleinnerbelowskip=5pt
+    }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% QUOTES 
+% Not speech/quote marks (those were taken care of earlier), but e.g. inspiration quote on chapter title pages in a book
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{0.69\textwidth}
+\setlength{\epigraphrule}{1pt}
+\renewcommand{\epigraphsize}{\Large}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% CODE
+\usepackage{minted}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% LISTS
+\usepackage[inline]{enumitem} % allows inline lists
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% EQUATIONS/MATHS
+\usepackage{textcomp} % fix text fonts
+\usepackage{gensymb} % add symbols
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd} % Useful maths stuff
+\usepackage{mathtools} % Fixes amsmath bugs
+
+\numberwithin{equation}{chapter} % Equation numbers by chapter. Eq 1.1, 1.2, 2.1 not 1,2,3
+
+% Hate arrows on your vectors? Want them boldface instead? Uncomment these three lines:
+\renewcommand{\vec}[1]{\mathbf{#1}} % Vectors are shown as bold font
+\let\oldhat\hat
+\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}} % Unit vectors shown as bold font
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% FOOTNOTES
+\interfootnotelinepenalty=10000 % Stops footnotes being spread over multiple pages. Though if it's really THAT long, would probably be better in the text...
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% SPEECH MARKS / QUOTE MARKS
+
+% Had to move this below minted, but needs to be above biblatex, to ensure both code listing AND referencing works correctly!
+\usepackage{csquotes} % fixes speech marks
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% REFERENCING - maxcite=2 ensures et al. for 3+ authors
+
+% Different styles, uncomment as needed:
+
+% Harvard style:
+\usepackage[citestyle=authoryear-comp,bibstyle=authoryear-comp,maxcitenames=2,uniquelist=false, dashed=false]{biblatex}
+
+% IEEE style:
+% \usepackage[citestyle=ieee, bibstyle=ieee, dashed=false]{biblatex}
+
+% Your references go in this file
+\addbibresource{references.bib}
+
+% puts "n.d." (no date) for references with no date
+\usepackage{xpatch}
+\xpatchbibdriver{online}
+  {\printtext[parens]{\usebibmacro{date}}}
+  {\iffieldundef{year}
+    {\printtext[parens]{n.d.}}
+    {\printtext[parens]{\usebibmacro{date}}}}
+  {}
+  {\typeout{There was an error patching biblatex-ieee (specifically, ieee.bbx's @online driver)}}
+  
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% LINKS
+
+\usepackage{hyperref}
+\hypersetup{
+unicode    = true, % allows special characters
+colorlinks = true,  % allows colouring of links
+linkcolor  = blue, % internal sec/fig/eq/tab links
+filecolor  = red, % any local files
+citecolor  = blue, % textcite and parencite colour
+urlcolor   = blue, % should make URLs and DOIs blue
+breaklinks % ensures links wrap in Tables of Contents & Figs
+}
+
+\usepackage{cleveref}
+% Don't ask, don't touch. This does all the section symbols correctly in every bloody possible scenario.
+\crefformat{section}{$\S$~#2#1#3}
+\Crefformat{section}{$\S$~#2#1#3}
+\crefrangeformat{section}{$\S\S$~#3#1#4--#5#2#6}
+\crefmultiformat{section}{$\S\S$~#2#1#3}%
+{ and~#2#1#3}{,~#2#1#3}{ and~#2#1#3}
+\crefrangelabelformat{section}%
+{$\S\S~$#3#1#4--#5#2#6}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{blindtext} % Placeholder text generator (lorem ipsum)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% WORDCOUNT
+\usepackage{verbatim}
+
+\newcommand{\quickwordcount}[1]{%
+  \immediate\write18{texcount -1 -sum=1,1,0 -merge -relaxed -utf8 -q #1.tex > #1-words.sum }%
+  \input{#1-words.sum}%
+}
+
+\newcommand{\detailtexcount}[1]{%
+  \immediate\write18{texcount -merge -sum=1,1,0 -utf8 -relaxed #1.tex > #1.wcdetail }%
+  \verbatiminput{#1.wcdetail}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ABSTRACT
+% Stop forcing a new page
+\renewenvironment{abstract}{
+  \begin{center}%
+    \bfseries\abstractname
+  \end{center}}
+  {}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% SUBFILES
+
+% Moved to main.tex for technical reasons! Must be the LAST thing in the preamble, so comes after \usepackage{mystyle}!
